@@ -1,142 +1,140 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DamxStore Payment</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Damx Store Payment</title>
   <style>
     body {
-      margin: 0;
+      background-color: #0a0f2c;
+      color: #ffffff;
       font-family: Arial, sans-serif;
-      background: #0a0f2c;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem;
-    }
-
-    .marquee {
-      width: 100%;
-      background: #111;
-      color: #0ff;
-      padding: 10px;
-      overflow: hidden;
-      white-space: nowrap;
-      box-shadow: 0 0 10px #0ff;
-    }
-
-    .marquee span {
-      display: inline-block;
-      animation: scrollText 10s linear infinite;
-    }
-
-    @keyframes scrollText {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    .card {
-      background: #11172f;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #00f0ff66;
-      padding: 20px;
-      margin: 1rem 0;
-      width: 90%;
-      max-width: 400px;
       text-align: center;
-      transition: 0.3s;
+      padding: 2rem;
     }
 
-    .card:hover {
-      box-shadow: 0 0 20px #00f0ff;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
 
-    .icon-top img {
-      height: 50px;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin: 5px 0;
-      font-size: 20px;
-    }
-
-    .subtext {
-      font-size: 13px;
-      color: #aaa;
-      margin-bottom: 10px;
+    .pay-box {
+      background: #11172f;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 1rem auto;
+      max-width: 400px;
+      box-shadow: 0 0 15px #00f0ff50;
     }
 
     .btn {
+      display: inline-block;
       background: #00f0ff;
       color: #000;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: 0.3s;
       font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 1rem;
+      text-decoration: none;
     }
 
     .btn:hover {
-      background: #0ff;
-      box-shadow: 0 0 10px #0ff;
+      background: #00c7d8;
     }
 
-    .whatsapp-btn {
-      margin-top: 30px;
-      background: #25D366;
+    .qr-image {
+      width: 250px;
+      margin-top: 1rem;
+      display: none;
+    }
+
+    input[type="file"] {
+      padding: 10px;
+      background: #222;
       color: #fff;
-      box-shadow: 0 0 10px #25D366;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    #status {
+      color: #0ff;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
 
-  <div class="marquee">
-    <span>𝖬𝖠𝖴 𝖡𝖴𝖠𝖳 𝖶𝖤𝖡 𝖯𝖠𝖸𝖬𝖤𝖭𝖳 𝖲𝖨𝖬𝖯𝖫𝖤 𝖲𝖤𝖯𝖤𝖱𝖳𝖨 𝖨𝖭𝖨? 𝖢𝖧𝖠𝖳: wa.me/601130538675</span>
+  <h1>Damx Store Payment</h1>
+
+  <div class="pay-box">
+    <h2>DuitNow</h2>
+    <p>Nombor: <span id="duitnowNum">01154222607</span></p>
+    <button class="btn" onclick="copyDuitNow()">Salin Nombor</button>
   </div>
 
-  <!-- DuitNow Section -->
-  <div class="card">
-    <div class="icon-top">
-      <img src="https://files.catbox.moe/zjl6nd.jpg" alt="DUITNOW">
-    </div>
-    <h2>𝗗𝗨𝗜𝗧𝗡𝗢𝗪</h2>
-    <div class="subtext">ᴇ-ᴡᴀʟʟᴇᴛ</div>
-    <p id="duitnow-num">120331861205</p>
-    <button class="btn" onclick="copyText('duitnow-num')">𝗦𝗔𝗟𝗜𝗡 𝗡𝗢𝗠𝗢𝗥</button>
+  <div class="pay-box">
+    <h2>Touch 'n Go (TnG)</h2>
+    <button class="btn" onclick="showQR()">Lihat QR Code</button>
+    <br>
+    <img src="https://i.ibb.co/4YXT5Ft/qrdummy.png" alt="QR TnG" class="qr-image" id="qrTng">
   </div>
 
-  <!-- TnG QR Section -->
-  <div class="card">
-    <div class="icon-top">
-      <img src="https://files.catbox.moe/0jdutz.jpg" alt="TnG">
-    </div>
-    <h2>𝗧𝗻𝗚</h2>
-    <div class="subtext">sᴄᴀɴ ǫʀ ᴄᴏᴅᴇ</div>
-    <a href="tng.html" target="_blank">
-      <button class="btn">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</button>
-    </a>
+  <div class="pay-box">
+    <h2>Upload Resit Pembayaran</h2>
+    <input type="file" id="resitFile" accept="image/*">
+    <br>
+    <button class="btn" onclick="uploadResit()">Hantar Resit</button>
+    <div id="status"></div>
   </div>
-
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/601130538675" target="_blank">
-    <button class="btn whatsapp-btn">Hubungi Admin via WhatsApp</button>
-  </a>
 
   <script>
-    function copyText(id) {
-      const element = document.getElementById(id);
-      const text = element.innerText.trim();
-      if (text === "") {
-        alert("Nomor belum tersedia.");
+    function copyDuitNow() {
+      const duitnow = document.getElementById("duitnowNum").textContent;
+      navigator.clipboard.writeText(duitnow).then(() => {
+        alert("Nombor DuitNow disalin!");
+      });
+    }
+
+    function showQR() {
+      document.getElementById("qrTng").style.display = "block";
+    }
+
+    async function uploadResit() {
+      const fileInput = document.getElementById("resitFile");
+      const status = document.getElementById("status");
+      const file = fileInput.files[0];
+
+      if (!file) {
+        status.textContent = "Sila pilih gambar resit terlebih dahulu.";
         return;
       }
-      navigator.clipboard.writeText(text);
-      alert('Nomor disalin: ' + text);
+
+      const botToken = '7625259435:AAGJPd_zD_v3d252B94qfAqJ-r1wgd_1Vjc'; // Ganti dengan token kamu
+      const chatId = '6943312517'; // Ganti dengan chat ID kamu
+
+      const formData = new FormData();
+      formData.append("chat_id", chatId);
+      formData.append("photo", file);
+      formData.append("caption", "📸 Resit pembayaran baru dari pelanggan.");
+
+      try {
+        const response = await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+          method: "POST",
+          body: formData
+        });
+
+        if (response.ok) {
+          status.textContent = "✅ Resit berjaya dihantar!";
+          fileInput.value = "";
+        } else {
+          status.textContent = "❌ Gagal hantar. Sila cuba lagi.";
+        }
+      } catch (err) {
+        console.error(err);
+        status.textContent = "❌ Ralat sambungan.";
+      }
     }
   </script>
 
