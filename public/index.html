@@ -87,13 +87,6 @@
       box-shadow: 0 0 10px #0ff;
     }
 
-    #TnG-img {
-      width: 100%;
-      max-width: 300px;
-      margin-top: 15px;
-      display: none;
-    }
-
     .whatsapp-btn {
       margin-top: 30px;
       background: #25D366;
@@ -139,7 +132,9 @@
     </div>
     <h2>𝗧𝗻𝗚</h2>
     <div class="subtext">sᴄᴀɴ ǫʀ ᴄᴏᴅᴇ</div>
-    <a class="btn" href="#qr-tng-view">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</a>
+    <a href="qr.html" target="_blank">
+      <button class="btn">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</button>
+    </a>
   </div>
 
   <div class="card">
@@ -154,9 +149,6 @@
   <a href="https://wa.me/601130538675" target="_blank">
     <button class="btn whatsapp-btn">Chat Admin via WhatsApp</button>
   </a>
-
-  <!-- Paparan QR TnG penuh -->
-  <a class="btn" href="qr.html" target="_blank">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</a>
 
   <script>
     function copyText(id) {
@@ -185,7 +177,7 @@
 
       const formData = new FormData();
       formData.append('chat_id', chatId);
-      formData.append('caption', `🧾 Resit Pembayaran\n👤 Nama: ${name}\n🆔 Nombor Fon: ${id}`);
+      formData.append('caption', `🧾 Resit Pembayaran\n👤 Nama: ${name}\n🆔 ID: ${id}`);
       formData.append('photo', file);
 
       try {
