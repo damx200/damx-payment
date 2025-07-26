@@ -139,8 +139,7 @@
     </div>
     <h2>𝗧𝗻𝗚</h2>
     <div class="subtext">sᴄᴀɴ ǫʀ ᴄᴏᴅᴇ</div>
-    <button class="btn" onclick="toggleTNG()">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</button>
-    <img id="TnG-img" src="https://files.catbox.moe/dpqpc8.jpg" alt="TnG QR">
+    <a class="btn" href="#qr-tng-view">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</a>
   </div>
 
   <div class="card">
@@ -156,6 +155,12 @@
     <button class="btn whatsapp-btn">Chat Admin via WhatsApp</button>
   </a>
 
+  <!-- Paparan QR TnG penuh -->
+  <div id="qr-tng-view" style="padding: 20px; text-align: center;">
+    <h2>𝗦𝗖𝗥𝗘𝗘𝗡𝗦𝗛𝗢𝗧 𝗤𝗥 𝗧𝗡𝗚</h2>
+    <img src="https://files.catbox.moe/dpqpc8.jpg" alt="TnG QR" style="max-width: 90%; border-radius: 10px; box-shadow: 0 0 20px #0ff; margin-top: 10px;">
+  </div>
+
   <script>
     function copyText(id) {
       const element = document.getElementById(id);
@@ -166,11 +171,6 @@
       }
       navigator.clipboard.writeText(text);
       alert('Nomor disalin: ' + text);
-    }
-
-    function toggleTNG() {
-      const tngImg = document.getElementById('TnG-img');
-      tngImg.style.display = tngImg.style.display === 'none' ? 'block' : 'none';
     }
 
     async function sendResit() {
@@ -188,7 +188,7 @@
 
       const formData = new FormData();
       formData.append('chat_id', chatId);
-      formData.append('caption', `🧾 Resit Pembayaran\n👤 Nama: ${name}\n🆔 ID: ${id}`);
+      formData.append('caption', `🧾 Resit Pembayaran\n👤 Nama: ${name}\n🆔 Nombor Fon: ${id}`);
       formData.append('photo', file);
 
       try {
