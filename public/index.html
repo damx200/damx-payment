@@ -45,20 +45,16 @@
       width: 90%;
       max-width: 400px;
       text-align: center;
-      position: relative;
+      transition: 0.3s;
     }
 
     .card:hover {
       box-shadow: 0 0 20px #00f0ff;
     }
 
-    .icon-top {
-      height: 50px;
-      margin-bottom: 10px;
-    }
-
     .icon-top img {
       height: 50px;
+      margin-bottom: 10px;
     }
 
     h2 {
@@ -80,6 +76,7 @@
       border-radius: 5px;
       margin-top: 10px;
       cursor: pointer;
+      transition: 0.3s;
       font-weight: bold;
     }
 
@@ -88,50 +85,21 @@
       box-shadow: 0 0 10px #0ff;
     }
 
-    #TnG-img {
-      width: 100%;
-      max-width: 100%;
-      margin-top: 15px;
-      display: none;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #00f0ff88;
-      transition: transform 0.3s ease;
-    }
-
-    #TnG-img.enlarged {
-      transform: scale(1.3);
-      z-index: 1000;
-    }
-
     .whatsapp-btn {
       margin-top: 30px;
       background: #25D366;
       color: #fff;
       box-shadow: 0 0 10px #25D366;
     }
-
-    input[type="text"],
-    input[type="file"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 5px;
-      font-size: 14px;
-    }
-
-    input[type="file"] {
-      background: #fff;
-      color: #000;
-    }
   </style>
 </head>
 <body>
 
   <div class="marquee">
-    <span>𝖬𝖠𝖴 𝖡𝖴𝖠𝖳 𝖶𝖤𝖡 𝖯𝖠𝖸𝖬𝖤𝖭𝖳 𝖲𝖨𝖬𝖯𝖫𝖤 𝖲𝖤𝖯𝖤𝖱𝖳𝖨 𝖨𝖭𝖨? 𝖢𝖧𝖠𝖳 𝖣𝖠𝖬𝖷𝖲𝖳𝖮𝖱𝖤 wa.me/601130538675</span>
+    <span>𝖬𝖠𝖴 𝖡𝖴𝖠𝖳 𝖶𝖤𝖡 𝖯𝖠𝖸𝖬𝖤𝖭𝖳 𝖲𝖨𝖬𝖯𝖫𝖤 𝖲𝖤𝖯𝖤𝖱𝖳𝖨 𝖨𝖭𝖨? 𝖢𝖧𝖠𝖳: wa.me/601130538675</span>
   </div>
 
+  <!-- DuitNow Section -->
   <div class="card">
     <div class="icon-top">
       <img src="https://files.catbox.moe/zjl6nd.jpg" alt="DUITNOW">
@@ -142,27 +110,21 @@
     <button class="btn" onclick="copyText('duitnow-num')">𝗦𝗔𝗟𝗜𝗡 𝗡𝗢𝗠𝗢𝗥</button>
   </div>
 
+  <!-- TnG QR Section -->
   <div class="card">
     <div class="icon-top">
       <img src="https://files.catbox.moe/0jdutz.jpg" alt="TnG">
     </div>
     <h2>𝗧𝗻𝗚</h2>
     <div class="subtext">sᴄᴀɴ ǫʀ ᴄᴏᴅᴇ</div>
-    <button class="btn" onclick="toggleTNG()">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</button>
-    <img id="TnG-img" src="https://files.catbox.moe/dpqpc8.jpg" alt="TnG QR">
+    <a href="tng.html" target="_blank">
+      <button class="btn">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</button>
+    </a>
   </div>
 
-  <div class="card">
-    <h2>𝗨𝗣𝗟𝗢𝗔𝗗 𝗥𝗘𝗦𝗜𝗧</h2>
-    <div class="subtext">Resit akan dihantar automatik ke Telegram</div>
-    <input type="text" id="resit-name" placeholder="Masukkan Nama Penuh">
-    <input type="text" id="resit-id" placeholder="Masukkan Nombor Telefon">
-    <input type="file" id="resit-img" accept="image/*">
-    <button class="btn" onclick="sendResit()">𝗛𝗔𝗡𝗧𝗔𝗥 𝗞𝗘 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠</button>
-  </div>
-
+  <!-- WhatsApp Button -->
   <a href="https://wa.me/601130538675" target="_blank">
-    <button class="btn whatsapp-btn">Chat Admin via WhatsApp</button>
+    <button class="btn whatsapp-btn">Hubungi Admin via WhatsApp</button>
   </a>
 
   <script>
@@ -175,51 +137,6 @@
       }
       navigator.clipboard.writeText(text);
       alert('Nomor disalin: ' + text);
-    }
-
-    function toggleTNG() {
-      const tngImg = document.getElementById('TnG-img');
-      if (tngImg.style.display === 'none') {
-        tngImg.style.display = 'block';
-        tngImg.classList.add('enlarged');
-      } else {
-        tngImg.style.display = 'none';
-        tngImg.classList.remove('enlarged');
-      }
-    }
-
-    async function sendResit() {
-      const name = document.getElementById('resit-name').value.trim();
-      const id = document.getElementById('resit-id').value.trim();
-      const file = document.getElementById('resit-img').files[0];
-
-      const chatId = '6943312517';
-      const token = '7625259435:AAGJPd_zD_v3d252B94qfAqJ-r1wgd_1Vjc';
-
-      if (!name || !id || !file) {
-        alert("Sila isi nama, nombor telefon dan pilih gambar resit.");
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append('chat_id', chatId);
-      formData.append('caption', `🧾 Resit Pembayaran\n👤 Nama: ${name}\n📱 Nombor: ${id}`);
-      formData.append('photo', file);
-
-      try {
-        const response = await fetch(`https://api.telegram.org/bot${token}/sendPhoto`, {
-          method: 'POST',
-          body: formData
-        });
-
-        if (response.ok) {
-          alert("✅ Resit berjaya dihantar ke Telegram.");
-        } else {
-          alert("❌ Gagal hantar. Sila semak token atau chat ID.");
-        }
-      } catch (error) {
-        alert("⚠️ Ralat sambungan ke Telegram.");
-      }
     }
   </script>
 
