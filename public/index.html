@@ -51,13 +51,17 @@
       box-shadow: 0 0 20px #00f0ff;
     }
 
-    .icon-top {
+    .icon-top img {
       height: 50px;
       margin-bottom: 10px;
     }
 
-    .icon-top img {
-      height: 50px;
+    .qr-code {
+      margin: 10px 0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #00f0ff66;
+      width: 200px;
+      height: auto;
     }
 
     h2 {
@@ -116,44 +120,51 @@
     <span>SILA SS RESIT PEMBAYARAN DAN UPLOAD RESIT DI TEMPAT YANG DISEDIAKAN TERIMA KASIH 🙏💕</span>
   </div>
 
+  <!-- DuitNow -->
   <div class="card">
     <div class="icon-top">
       <img src="https://files.catbox.moe/zjl6nd.jpg" alt="DUITNOW">
     </div>
     <h2>𝗗𝗨𝗜𝗧𝗡𝗢𝗪</h2>
     <div class="subtext">ᴇ-ᴡᴀʟʟᴇᴛ</div>
+    <img src="https://files.catbox.moe/7odr9h.png" alt="QR DuitNow" class="qr-code">
     <p id="duitnow-num">120331861205</p>
     <button class="btn" onclick="copyText('duitnow-num')">𝗦𝗔𝗟𝗜𝗡 𝗡𝗢𝗠𝗢𝗥</button>
   </div>
 
+  <!-- TnG -->
   <div class="card">
     <div class="icon-top">
       <img src="https://files.catbox.moe/0jdutz.jpg" alt="TnG">
     </div>
     <h2>𝗧𝗻𝗚</h2>
     <div class="subtext">sᴄᴀɴ ǫʀ ᴄᴏᴅᴇ</div>
-    <a href="qr.html" target="_blank">
-      <button class="btn">𝗟𝗜𝗛𝗔𝗧 𝗧𝗻𝗚</button>
-    </a>
+    <img src="https://files.catbox.moe/yh7okq.png" alt="QR TnG" class="qr-code">
+    <p id="tng-num">601130538675</p>
+    <button class="btn" onclick="copyText('tng-num')">𝗦𝗔𝗟𝗜𝗡 𝗡𝗢𝗠𝗢𝗥</button>
   </div>
 
+  <!-- Upload Resit -->
   <div class="card">
     <h2>𝗨𝗣𝗟𝗢𝗔𝗗 𝗥𝗘𝗦𝗜𝗧</h2>
     <div class="subtext">Resit akan dihantar automatik ke Telegram</div>
     <input type="text" id="resit-name" placeholder="Masukkan Nama">
     <input type="text" id="resit-id" placeholder="Masukkan Nombor fon">
+    <input type="text" id="resit-item" placeholder="Masukkan Nama Item">
     <input type="file" id="resit-img" accept="image/*">
     <button class="btn" onclick="sendResit()">𝗛𝗔𝗡𝗧𝗔𝗥 𝗞𝗘 𝗧𝗘𝗟𝗘𝗚𝗥𝗔𝗠</button>
+    <button class="btn" onclick="downloadResit()">📥 Muat Turun Resit</button>
   </div>
 
+  <!-- Hubungi Admin -->
   <a href="https://wa.me/601130538675" target="_blank">
     <button class="btn whatsapp-btn">Chat Admin via WhatsApp</button>
   </a>
-  
-<a href="https://t.me/ItmeDamx" target="_blank">
-  <button class="btn" style="background:#0088cc; color:#fff; box-shadow: 0 0 10px #0088cc;">Chat Admin via Telegram</button>
-</a>
-  
+  <a href="https://t.me/ItmeDamx" target="_blank">
+    <button class="btn" style="background:#0088cc; color:#fff; box-shadow: 0 0 10px #0088cc;">Chat Admin via Telegram</button>
+  </a>
+
+  <!-- SCRIPT -->
   <script>
     function copyText(id) {
       const element = document.getElementById(id);
@@ -169,19 +180,20 @@
     async function sendResit() {
       const name = document.getElementById('resit-name').value.trim();
       const id = document.getElementById('resit-id').value.trim();
+      const item = document.getElementById('resit-item').value.trim();
       const file = document.getElementById('resit-img').files[0];
 
       const chatId = '6943312517';
       const token = '7625259435:AAGJPd_zD_v3d252B94qfAqJ-r1wgd_1Vjc';
 
-      if (!name || !id || !file) {
-        alert("Sila isi nama, NO dan pilih gambar resit.");
+      if (!name || !id || !item || !file) {
+        alert("Sila isi Nama, Nombor, Item dan pilih gambar resit.");
         return;
       }
 
       const formData = new FormData();
       formData.append('chat_id', chatId);
-      formData.append('caption', `🧾 Resit Pembayaran\n👤 Nama: ${name}\n📞 NO: ${id}`);
+      formData.append('caption', `🧾 Resit Pembayaran\n👤 Nama: ${name}\n📞 No: ${id}\n📦 Item: ${item}`);
       formData.append('photo', file);
 
       try {
@@ -199,7 +211,27 @@
         alert("⚠️ Ralat sambungan ke Telegram.");
       }
     }
-  </script>
 
+    function downloadResit() {
+      const name = document.getElementById('resit-name').value.trim();
+      const id = document.getElementById('resit-id').value.trim();
+      const item = document.getElementById('resit-item').value.trim();
+
+      if (!name || !id || !item) {
+        alert("Sila isi Nama, Nombor dan Item terlebih dahulu.");
+        return;
+      }
+
+      const resitContent = `🧾 RESIT PEMBAYARAN DAMXSTORE\n━━━━━━━━━━━━━━\n👤 Nama: ${name}\n📞 No: ${id}\n📦 Item: ${item}\n📅 Tarikh: ${new Date().toLocaleString()}\n━━━━━━━━━━━━━━\nTerima kasih kerana support DamxStore 🫶`;
+
+      const blob = new Blob([resitContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.download = "resit_damxstore.txt";
+      link.href = url;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
 </body>
 </html>
